@@ -21,11 +21,6 @@ setup: # Setup this project's pipenv environment
 install-self: # Install this project's python package using the pipenv's pip
 	pipenv run pip3 install --editable .
 
-.PHONY: docs
-docs: # Build the documentation for this package
-	pipenv run sphinx-apidoc -T -f -o doc $(PKG_DIR)
-	pipenv run sphinx-build doc/ docs/
-
 .PHONY: clean-py
 clean-py: # Clean up Python generated files
 	rm -rf $(PKG_DIR)/__pycache__
@@ -38,13 +33,9 @@ clean: clean-py # Remove build files - including a forced "git rm" of "dist/*"
 	git rm -f dist/* --ignore-unmatch
 	rm -rf dist
 
-.PHONY: read-docs
-read-docs: # Open the package docs locally
-	open docs/index.html
-
 .PHONY: release
-release: change-version clean setup build docs # Build a new versioned release and push it (requires VERSION=#.#.#)
-	git add dist/* doc/* docs/* pyproject.toml $(PKG_DIR)/__init__.py
+release: change-version clean setup build # Build a new versioned release and push it (requires VERSION=#.#.#)
+	git add dist/* pyproject.toml $(PKG_DIR)/__init__.py
 	git commit -m "build: release v$(VERSION)"
 	git push
 	git tag -a v$(VERSION) -m "Release v$(VERSION)"
