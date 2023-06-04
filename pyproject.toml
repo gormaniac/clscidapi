@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clscidapi"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.96.*",
+    "pydantic==1.10.*",
+    "uvicorn==0.22.*",
+]
+
+[tool.setuptools.packages.find]
+namespaces = true
+where = ["src"]

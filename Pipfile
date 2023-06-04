@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uvicorn = "*"
+pydantic = "*"
+
+[dev-packages]
+sphinx = "*"
+build = "*"
+tomlkit = "*"
+setuptools = "*"
+sphinx-rtd-theme = "*"
+
+[requires]
+python_version = "3.11"
